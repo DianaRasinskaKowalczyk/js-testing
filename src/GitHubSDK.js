@@ -7,7 +7,7 @@ export default class GitHubSDK {
 	getUser(userName) {
 		const options = {
 			headers: {
-				Accept: "application/vnd.github.v3+json",
+				Accept: "application/vnd.github+json",
 				Authorization: `token ${this.token}`,
 			},
 		};

@@ -1,7 +1,7 @@
 import nodeFetch from "node-fetch";
 global.fetch = nodeFetch;
 import { token } from "../token.js";
-import GitHubSDK from "../src/GitHubSDK";
+import GitHubSDK from "../src/GitHubSDK.js";
 
 describe("class GitHubSDK", () => {
 	describe(".getUser()", () => {
