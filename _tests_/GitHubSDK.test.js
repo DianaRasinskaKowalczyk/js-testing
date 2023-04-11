@@ -1,6 +1,6 @@
 import nodeFetch from "node-fetch";
 global.fetch = nodeFetch;
-// import token from "../token.js";
+import token from "../token.js";
 import GitHubSDK from "../src/GitHubSDK.js";
 
 describe("class GitHubSDK", () => {
@@ -32,7 +32,7 @@ describe("class GitHubSDK", () => {
 	describe(".getRepos()", () => {
 		it("should return a list of repositories if a username exists", () => {
 			expect.assertions(1);
-			const gh = GitHubSDK();
+			const gh = new GitHubSDK(token);
 			const userName = "DianaRasinskaKowalczyk";
 
 			const promise = gh.getRepos(userName);
@@ -46,14 +46,14 @@ describe("class GitHubSDK", () => {
 	describe(".getRepo()", () => {
 		it("should return repo's name if user and repo exist", () => {
 			expect.assertions(1);
-			const gh = GitHubSDK();
+			const gh = GitHubSDK(token);
 			const userName = "DianaRasinskaKowalczyk";
 			const repo = "task-js-basics";
 
 			const promise = gh.getRepo(userName, repo);
 
 			return promise.then(result => {
-				expect(result).toBe(repo);
+				expect(result.name).toBe(repo);
 			});
 		});
 	});
@@ -61,8 +61,8 @@ describe("class GitHubSDK", () => {
 	describe(".sendInvitation()", () => {
 		it("should return true if a user exists", () => {
 			expect.assertions(1);
-			const gh = GitHubSDK("devmentor-pl");
-			const userName = "DianaRasinskaKowalczyk";
+			const gh = GitHubSDK(token);
+			const userName = "devmentor.pl";
 			const repo = "task-js-basics";
 
 			const promise = gh.sendInvitation(repo, userName);

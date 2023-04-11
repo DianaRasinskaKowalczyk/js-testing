@@ -9,7 +9,7 @@ export default class GitHubSDK {
 		const options = {
 			headers: {
 				Accept: "application/vnd.github+json",
-				// Authorization: `token ${this.token}`,
+				Authorization: `token ${this.token}`,
 			},
 		};
 
@@ -20,22 +20,22 @@ export default class GitHubSDK {
 		const options = {
 			headers: {
 				Accept: "application/vnd.github+json",
-				// Authorization: `token ${this.token}`,
+				Authorization: `token ${this.token}`,
 			},
 		};
 
-		return this._fetch(options, `/orgs/${userName}/repos`);
+		return this._fetch(options, `/users/${userName}/repos`);
 	}
 
 	getRepo(userName, repo) {
 		const options = {
 			headers: {
 				Accept: "application/vnd.github+json",
-				// Authorization: `token ${this.token}`,
+				Authorization: `token ${this.token}`,
 			},
 		};
 
-		return this._fetch(options, `/repos/${userName}/${repo}`);
+		return this._fetch(options, `/users/${userName}/${repo}`);
 	}
 
 	sendInvitation(repo, name) {
