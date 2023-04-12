@@ -45,13 +45,15 @@ export default class GitHubSDK {
 			credentials: "same-origin",
 			redirect: "follow",
 			headers: {
-				Accept: "application/vnd.github.v3+json",
+				Accept: "application/vnd.github+json",
 				Authorization: `token ${this.token}`,
 			},
 			body: JSON.stringify({
 				permission: "pull",
 			}),
 		};
+
+		console.log(options, "&&&");
 		return this._fetch(
 			options,
 			`/repos/${this.owner}/${repo}/collaborators/${name}`
@@ -62,6 +64,9 @@ export default class GitHubSDK {
 		const url = this.apiLink + additionalPath;
 		return fetch(url, options).then(resp => {
 			if (resp.ok) {
+				if (resp.status === 204) {
+					return resp.status;
+				}
 				return resp.json();
 			}
 			return Promise.reject(resp);

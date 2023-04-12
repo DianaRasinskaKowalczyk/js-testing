@@ -63,7 +63,7 @@ describe("class GitHubSDK", () => {
 	});
 
 	describe(".sendInvitation()", () => {
-		it("should return id if a user exists", () => {
+		it.only("should return true with status 204 if a user is already a collaborator", () => {
 			expect.assertions(1);
 			const gh = new GitHubSDK(token, "DianaRasinskaKowalczyk");
 			const userName = "devmentor-pl";
@@ -73,7 +73,7 @@ describe("class GitHubSDK", () => {
 
 			return promise
 				.then(result => {
-					expect(result.id).toBeTruthy;
+					expect(result.status).toBe(204);
 				})
 				.catch(err => console.log(err, "###"));
 		});
