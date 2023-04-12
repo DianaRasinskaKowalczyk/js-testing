@@ -35,7 +35,8 @@ export default class GitHubSDK {
 			},
 		};
 
-		return this._fetch(options, `/users/${userName}/${repo}`);
+		console.log(options, "@@@");
+		return this._fetch(options, `/repos/${userName}/${repo}`);
 	}
 
 	sendInvitation(repo, name) {
@@ -45,7 +46,7 @@ export default class GitHubSDK {
 			redirect: "follow",
 			headers: {
 				Accept: "application/vnd.github.v3+json",
-				Authorization: `token ${token}`,
+				Authorization: `token ${this.token}`,
 			},
 			body: JSON.stringify({
 				permission: "pull",
